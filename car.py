@@ -1,0 +1,15 @@
+import sqlite3
+connection=sqlite3.connect("Car_db")
+cursor=connection.cursor()
+#cursor.execute("create table Cars(car_name varchar(30),owner_name varchar(30))")
+car_name=input('car name :')
+owner_name=input('owner name :')
+cursor.execute("insert into Cars (car_name,owner_name) values(?,?)",(car_name,owner_name))
+connection.commit()
+print("data enterd successfully. \n")
+print("The Details of Cars :  \n")
+cursor.execute("select * from Cars")
+result=cursor.fetchall()
+for i in result:
+    print(i)
+connection.close()
